@@ -194,45 +194,57 @@ main {
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(200px, 0.6fr) minmax(300px, 1.4fr);
   gap: 0;
   border-radius: var(--radius-large);
   overflow: hidden;
   box-shadow: var(--shadow-elevated);
 }
 
-.attribute {
-  display: grid;
-  grid-template-columns: minmax(200px, 0.6fr) minmax(300px, 1.4fr);
-  min-height: 100%;
-}
-
-.attribute:not(:first-child) {
-  border-top: 1px solid rgba(242, 255, 226, 0.15);
-}
-
-.attribute-label {
+.attributes-list dt,
+.attributes-list dd {
   margin: 0;
+  grid-column: span 1;
+}
+
+.attributes-list dt {
+  display: flex;
+  align-items: center;
   padding: clamp(20px, 3vw, 28px) clamp(18px, 3.5vw, 28px);
-  background: var(--gradient-emphasis);
-  color: #f2ffe2;
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-align: left;
-  display: flex;
-  align-items: center;
   line-height: 1.4;
+}
+
+.attributes-list dd {
+  padding: clamp(20px, 3vw, 28px) clamp(22px, 4vw, 34px);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.attributes-list dt:nth-of-type(n + 2),
+.attributes-list dd:nth-of-type(n + 2) {
+  border-top: 1px solid rgba(242, 255, 226, 0.15);
+}
+
+.attribute-label,
+.deliverable-title-box {
+  background: var(--gradient-emphasis);
+  color: #f2ffe2;
+}
+
+.attribute-content,
+.deliverable-description-box {
+  background: var(--gradient-support);
+  color: var(--color-emphasis-text);
 }
 
 .attribute-content {
   margin: 0;
-  padding: clamp(20px, 3vw, 28px) clamp(22px, 4vw, 34px);
-  background: var(--gradient-support);
-  color: var(--color-emphasis-text);
-  font-size: 1rem;
-  line-height: 1.6;
-  text-align: left;
 }
 
 .deliverables-grid {
@@ -313,7 +325,6 @@ main {
 .deliverable-title-box {
   flex: 0 0 clamp(200px, 28%, 260px);
   padding: clamp(16px, 3vw, 22px) clamp(18px, 3.5vw, 30px);
-  background: var(--gradient-emphasis);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -333,13 +344,11 @@ main {
 .deliverable-description-box {
   flex: 1 1 auto;
   padding: clamp(16px, 3vw, 20px) clamp(22px, 4vw, 34px);
-  background: var(--gradient-support);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 8px;
-  text-align: left;
 }
 
 .deliverable-description-box p {
@@ -439,19 +448,23 @@ main {
   .deliverables-overview {
     max-width: 520px;
     margin: 0 auto;
-    text-align: center;
   }
 
   .deliverables-list {
     width: 100%;
   }
 
-  .impact-overview {
-    text-align: left;
+  .attributes-list {
+    grid-template-columns: 1fr;
   }
 
-  .attribute {
-    grid-template-columns: 1fr;
+  .attributes-list dt,
+  .attributes-list dd {
+    grid-column: 1;
+  }
+
+  .attributes-list dt:nth-of-type(n + 2) {
+    border-top: none;
   }
 
   .attribute-label {
@@ -474,13 +487,10 @@ main {
   .deliverable-title-box {
     border-bottom: 1px solid rgba(242, 255, 226, 0.25);
     border-radius: 20px 20px 0 0;
-    justify-content: flex-start;
-    text-align: left;
   }
 
   .deliverable-description-box {
     border-radius: 0 0 20px 20px;
-    text-align: left;
     padding: clamp(18px, 6vw, 28px);
     align-items: flex-start;
   }
@@ -488,7 +498,6 @@ main {
   .deliverable {
     flex-direction: column;
     align-items: stretch;
-    text-align: left;
     gap: clamp(18px, 6vw, 28px);
   }
 
